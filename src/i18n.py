@@ -38,6 +38,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "charging":             "⚡  Charging",
         "fully_charged":        "✔  Fully Charged",
         "discharging":          "Discharging",
+        "alert_low_battery":    "Low Battery!",
         # Settings window
         "settings_title":       "DualSense Battery — Settings",
         "settings_heading":     "Settings",
@@ -72,6 +73,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "charging":             "⚡  충전 중",
         "fully_charged":        "✔  완충됨",
         "discharging":          "방전 중",
+        "alert_low_battery":    "배터리가 부족합니다!",
         # Settings window
         "settings_title":       "DualSense Battery — 설정",
         "settings_heading":     "설정",

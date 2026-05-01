@@ -42,7 +42,7 @@ def main() -> None:
     _ensure_assets()
 
     from controller import BatteryState, ControllerMonitor
-    from popup import BatteryPopup
+    from popup import BatteryPopup, AlertPopup
     from settings import Settings, SettingsWindow
     from tray_icon import TrayApp
     import i18n
@@ -58,14 +58,29 @@ def main() -> None:
     log.info("Language: %s  font: %s", cfg.language, i18n.tk_font(9))
 
     popup_q:    queue.Queue[BatteryState] = queue.Queue()
-    settings_q: queue.Queue[None]        = queue.Queue()
+    settings_q: queue.Queue[None]         = queue.Queue()
+    alert_q:    queue.Queue[BatteryState] = queue.Queue()
+    
     popup        = BatteryPopup(root, on_settings=lambda: settings_q.put(None))
+    alert_popup  = AlertPopup(root)
+    
+    alert_state  = {"has_alerted": False}
 
     tray: TrayApp | None = None
 
     def on_battery_update(state: BatteryState) -> None:
         if tray is not None:
             tray.update(state)
+            
+        if cfg.low_battery_warn and state.connected and not state.is_charging:
+            if state.percent <= cfg.low_battery_threshold:
+                if not alert_state["has_alerted"]:
+                    alert_state["has_alerted"] = True
+                    alert_q.put(state)
+            else:
+                alert_state["has_alerted"] = False
+        else:
+            alert_state["has_alerted"] = False
 
     def on_quit() -> None:
         log.info("Quit requested")
@@ -103,6 +118,12 @@ def main() -> None:
             while True:
                 settings_q.get_nowait()
                 settings_win.show()
+        except queue.Empty:
+            pass
+        try:
+            while True:
+                astate = alert_q.get_nowait()
+                alert_popup.show(astate)
         except queue.Empty:
             pass
         root.after(100, _drain)

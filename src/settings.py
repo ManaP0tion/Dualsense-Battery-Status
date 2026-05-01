@@ -183,7 +183,7 @@ class SettingsWindow:
                  bg=BG, fg=FG_DIM, font=i18n.tk_font(9)).pack(side="left")
         var_threshold = tk.IntVar(value=s.low_battery_threshold)
         tk.Spinbox(
-            thr_row, from_=5, to=50, increment=5,
+            thr_row, from_=5, to=100, increment=5,
             textvariable=var_threshold, width=4,
             bg=BG2, fg=FG, insertbackground=FG,
             buttonbackground=BORDER, relief="flat",

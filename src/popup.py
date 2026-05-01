@@ -30,7 +30,7 @@ POPUP_W  = 230
 def _accent(percent: int, is_charging: bool) -> str:
     if is_charging:  return C_BLUE
     if percent > 50: return C_GREEN
-    if percent > 20: return C_YELLOW
+    if percent > 20: return FG
     return C_RED
 
 
@@ -170,3 +170,95 @@ class BatteryPopup:
                 self._close()
         except tk.TclError:
             self._close()
+
+
+class AlertPopup:
+    def __init__(self, root: tk.Tk) -> None:
+        self._root = root
+        self._win: tk.Toplevel | None = None
+        self._timer_id: str | None = None
+
+    def show(self, state: "BatteryState") -> None:
+        self._close()
+
+        win = tk.Toplevel(self._root)
+        self._win = win
+        win.overrideredirect(True)
+        win.attributes("-topmost", True)
+        win.attributes("-alpha", 0.96)
+        win.configure(bg=BORDER)
+
+        self._build(win, state)
+
+        win.update_idletasks()
+        w, h = win.winfo_reqwidth(), win.winfo_reqheight()
+        sw, sh = win.winfo_screenwidth(), win.winfo_screenheight()
+        
+        px = sw - w - 24
+        py = sh - h - 60
+
+        win.geometry(f"{w}x{h}+{px}+{py}")
+        
+        # Auto-close after 7 seconds
+        self._timer_id = self._root.after(7000, self._close)
+        
+        # Click to close
+        win.bind("<Button-1>", lambda e: self._close())
+        self._bind_click_to_close(win)
+
+    def _bind_click_to_close(self, widget: tk.Widget) -> None:
+        for child in widget.winfo_children():
+            child.bind("<Button-1>", lambda e: self._close(), add="+")
+            self._bind_click_to_close(child)
+
+    def _build(self, win: tk.Toplevel, state: "BatteryState") -> None:
+        pad   = tk.Frame(win, bg=C_RED, padx=2, pady=2)
+        pad.pack(fill="both", expand=True)
+        inner = tk.Frame(pad, bg=BG, padx=16, pady=14)
+        inner.pack(fill="both", expand=True)
+
+        # Header
+        hdr = tk.Frame(inner, bg=BG)
+        hdr.pack(fill="x")
+        tk.Label(hdr, text="⚠️ DualSense", bg=BG, fg=C_RED,
+                 font=i18n.tk_font(11, bold=True)).pack(side="left")
+                 
+        btn_close = tk.Label(hdr, text="✕", bg=BG, fg=FG_DIM, font=i18n.tk_font(10), cursor="hand2")
+        btn_close.pack(side="right")
+        btn_close.bind("<Enter>", lambda e: btn_close.config(fg=FG))
+        btn_close.bind("<Leave>", lambda e: btn_close.config(fg=FG_DIM))
+
+        # Warning text
+        tk.Label(inner, text=i18n.t("alert_low_battery"), bg=BG, fg=FG,
+                 font=i18n.tk_font(10)).pack(pady=(10, 5))
+
+        # Battery bar
+        accent = C_RED
+        bar_w, bar_h, nub_w = POPUP_W - 36, 16, 5
+
+        cv = tk.Canvas(inner, width=bar_w + nub_w, height=bar_h,
+                       bg=BG, highlightthickness=0)
+        cv.pack()
+        cv.create_rectangle(0, 0, bar_w, bar_h,
+                            outline=BORDER, fill=BG_INNER, width=1)
+        ny = bar_h // 2
+        cv.create_rectangle(bar_w + 1, ny - 4, bar_w + nub_w, ny + 4,
+                            fill=BORDER, outline="")
+        fw = max(0, int((bar_w - 4) * state.percent / 100))
+        if fw:
+            cv.create_rectangle(2, 2, 2 + fw, bar_h - 2, fill=accent, outline="")
+
+        # Large percentage
+        tk.Label(inner, text=f"{state.percent}%", bg=BG, fg=accent,
+                 font=i18n.tk_font(28, bold=True)).pack(pady=(8, 0))
+
+    def _close(self) -> None:
+        if self._timer_id:
+            self._root.after_cancel(self._timer_id)
+            self._timer_id = None
+        if self._win is not None:
+            try:
+                self._win.destroy()
+            except tk.TclError:
+                pass
+            self._win = None
