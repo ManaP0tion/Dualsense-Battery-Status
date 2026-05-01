@@ -7,8 +7,8 @@ DualSense:
                       0x0=discharging  0x1=charging  0x2=full  0xB=USB/not charging
 
 DualShock 4:
-  USB  Report 0x01  battery byte @ data[31]  bits[3:0]=level 0-11 (×10=%, capped 100%)
-  BT   Report 0x11  battery byte @ data[33]  bit[4]=USB plugged
+  USB  Report 0x01  battery byte @ data[30]  bits[3:0]=level 0-11 (×10=%, capped 100%)
+  BT   Report 0x11  battery byte @ data[32]  bit[4]=charging
 """
 
 from __future__ import annotations
@@ -32,12 +32,15 @@ CTRL_DUALSHOCK4 = "DualShock 4"
 # Minimum HID read lengths (report ID byte included)
 _DS_USB_MIN_LEN  = 54
 _DS_BT_MIN_LEN   = 55
-_DS4_USB_MIN_LEN = 32
-_DS4_BT_MIN_LEN  = 34
+_DS4_USB_MIN_LEN = 31
+_DS4_BT_MIN_LEN  = 33
 
 # Battery byte offsets in the HIDAPI read buffer (report ID at index 0)
-_DS4_USB_BATT_OFFSET = 31
-_DS4_BT_BATT_OFFSET  = 33
+# DS4 struct offsets (hid-playstation.c): sticks(4)+btns(3)+triggers(2)+ts(2)+temp(1)+gyro(6)+accel(6)+rsv(5) = 29 bytes before status
+# USB:  report ID at data[0], struct at data[1] → battery at data[30]
+# BT:   report ID at data[0], 2 reserved bytes, struct at data[3] → battery at data[32]
+_DS4_USB_BATT_OFFSET = 30
+_DS4_BT_BATT_OFFSET  = 32
 
 DEFAULT_POLL_INTERVAL = 60
 
