@@ -1,0 +1,90 @@
+DualSense Battery Status
+========================
+Third-party components and their licenses.
+
+
+────────────────────────────────────────────────────────────────────────────────
+Hack Nerd Font
+────────────────────────────────────────────────────────────────────────────────
+Used as the default UI font for English (en) locale.
+
+  Hack typeface  © Christopher Simpkins and contributors
+  License: MIT  <https://github.com/source-foundry/Hack/blob/master/LICENSE.md>
+
+  Nerd Fonts patches  © Ryan L McIntyre
+  License: MIT  <https://github.com/ryanoasis/nerd-fonts/blob/master/LICENSE>
+
+The Hack Nerd Font is a free, open-source project. You can obtain it from
+  https://www.nerdfonts.com/font-downloads
+  https://github.com/ryanoasis/nerd-fonts/releases
+
+MIT License (Hack)
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+
+
+────────────────────────────────────────────────────────────────────────────────
+Noto Sans KR
+────────────────────────────────────────────────────────────────────────────────
+Used as the UI font for Korean (ko) locale.
+
+  Noto Sans KR  © Google LLC
+  License: SIL Open Font License, Version 1.1
+  Source: https://fonts.google.com/noto/specimen/Noto+Sans+KR
+  Repository: https://github.com/notofonts/noto-cjk
+
+SIL OPEN FONT LICENSE Version 1.1
+  This Font Software is licensed under the SIL Open Font License, Version 1.1.
+  This license is available with a FAQ at https://openfontlicense.org/
+
+  PERMISSION & CONDITIONS
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of the Font Software, to use, study, copy, merge, embed, modify, redistribute,
+  and sell modified and unmodified copies of the Font Software, subject to the
+  following conditions:
+
+  1) Neither the Font Software nor any of its individual components, in
+     original or modified versions, may be sold by itself.
+  2) Original or modified versions of the Font Software may be bundled,
+     redistributed and/or sold with any software, provided that each copy
+     contains the above copyright notice and this license. These can be
+     included either as stand-alone text files, human-readable headers or in
+     the appropriate machine-readable metadata fields within text or binary
+     files as long as those fields can be easily viewed by the user.
+  3) No modified version of the Font Software may use the Reserved Font Name(s)
+     unless explicit written permission is granted by the corresponding
+     Copyright Holder(s).
+
+  TERMINATION
+  This license becomes null and void if any of the above conditions are not met.
+
+
+────────────────────────────────────────────────────────────────────────────────
+Python libraries
+────────────────────────────────────────────────────────────────────────────────
+pystray      © Moses Palmér  —  LGPL-3.0
+             https://github.com/moses-palmer/pystray
+
+Pillow       © Jeffrey A. Clark (Alex) and contributors  —  HPND License
+             https://github.com/python-pillow/Pillow
+
+hidapi       © Alan Ott / Signal 11 Software  —  BSD/GPL/see repo
+             https://github.com/libusb/hidapi
+
+All libraries are used unmodified and are available via pip.
+See each project's repository for full license text.

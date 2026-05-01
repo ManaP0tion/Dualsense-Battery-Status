@@ -1,0 +1,44 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+.env
+
+# ── Build / packaging ─────────────────────────────────────────────────────────
+build/
+dist/
+*.spec
+*.egg-info/
+
+# ── PyInstaller cache ─────────────────────────────────────────────────────────
+*.manifest
+
+# ── Logs & Config ──────────────────────────────────────────────────────────────
+logs/*.log
+logs/*.txt
+config.json
+
+# ── Generated assets (reproducible via generate_app_icon.py) ─────────────────
+assets/app_icon.ico
+assets/app_icon.png
+
+# ── IDE / editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.user
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+.claude/
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store
