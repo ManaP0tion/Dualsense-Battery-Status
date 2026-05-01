@@ -36,7 +36,7 @@ ACCENT  = "#58a6ff"
 @dataclass
 class Settings:
     startup:               bool = False
-    poll_interval:         int  = 5
+    poll_interval:         int  = 60
     low_battery_warn:      bool = True
     low_battery_threshold: int  = 20
     language:              str  = "en"
