@@ -83,7 +83,7 @@ class BatteryPopup:
         # Header
         hdr = tk.Frame(inner, bg=BG)
         hdr.pack(fill="x")
-        tk.Label(hdr, text=state.controller or "Controller", bg=BG, fg=FG,
+        tk.Label(hdr, text="DualSense", bg=BG, fg=FG,
                  font=i18n.tk_font(11, bold=True)).pack(side="left")
         tk.Label(hdr, text=i18n.t("battery_status"), bg=BG, fg=FG_DIM,
                  font=i18n.tk_font(9)).pack(side="left", padx=(5, 0), pady=(2, 0))
@@ -220,8 +220,7 @@ class AlertPopup:
         # Header
         hdr = tk.Frame(inner, bg=BG)
         hdr.pack(fill="x")
-        ctrl_name = state.controller or "Controller"
-        tk.Label(hdr, text=f"⚠️ {ctrl_name}", bg=BG, fg=C_RED,
+        tk.Label(hdr, text="⚠️ DualSense", bg=BG, fg=C_RED,
                  font=i18n.tk_font(11, bold=True)).pack(side="left")
                  
         btn_close = tk.Label(hdr, text="✕", bg=BG, fg=FG_DIM, font=i18n.tk_font(10), cursor="hand2")

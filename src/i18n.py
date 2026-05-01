@@ -23,8 +23,8 @@ if TYPE_CHECKING:
 _STRINGS: dict[str, dict[str, str]] = {
     "en": {
         # Tray / tooltip
-        "tooltip_disconnected": "{ctrl}: Not connected",
-        "tooltip_connected":    "{ctrl} [{conn}]: {pct}%{charge}",
+        "tooltip_disconnected": "DualSense: Not connected",
+        "tooltip_connected":    "DualSense [{conn}]: {pct}%{charge}",
         "tooltip_charging":     " (Charging)",
         # Tray menu
         "no_controller":        "No controller connected",
@@ -40,7 +40,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "discharging":          "Discharging",
         "alert_low_battery":    "Low Battery!",
         # Settings window
-        "settings_title":       "PlayStation Battery — Settings",
+        "settings_title":       "DualSense Battery — Settings",
         "settings_heading":     "Settings",
         "section_startup":      "Startup",
         "run_on_startup":       "Run on Windows startup",
@@ -58,8 +58,8 @@ _STRINGS: dict[str, dict[str, str]] = {
     },
     "ko": {
         # Tray / tooltip
-        "tooltip_disconnected": "{ctrl}: 연결 없음",
-        "tooltip_connected":    "{ctrl} [{conn}]: {pct}%{charge}",
+        "tooltip_disconnected": "DualSense: 연결 없음",
+        "tooltip_connected":    "DualSense [{conn}]: {pct}%{charge}",
         "tooltip_charging":     " (충전 중)",
         # Tray menu
         "no_controller":        "연결된 컨트롤러 없음",
@@ -75,7 +75,7 @@ _STRINGS: dict[str, dict[str, str]] = {
         "discharging":          "방전 중",
         "alert_low_battery":    "배터리가 부족합니다!",
         # Settings window
-        "settings_title":       "PlayStation Battery — 설정",
+        "settings_title":       "DualSense Battery — 설정",
         "settings_heading":     "설정",
         "section_startup":      "시작",
         "run_on_startup":       "Windows 시작 시 자동 실행",
